@@ -5,6 +5,7 @@ const port = 3000
 
 // 引用路由器，會自動抓取index
 const routes = require('./routes')
+require('./config/mongoose')
 
 const app = express()
 
