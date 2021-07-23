@@ -22,7 +22,7 @@ function getCategoryIcon(categories, value) {
 
 function formatDate(dateString) {
   const date = new Date(dateString)
-  return `${date.getFullYear()}/${date.getMonth()}/${date.getUTCDate()} ${date.getHours()}:${date.getMinutes()}`
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
 }
 
 module.exports = { getTotalAmount, getCategoryIcon, formatDate }
