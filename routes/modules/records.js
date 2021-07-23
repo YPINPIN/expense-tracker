@@ -32,5 +32,40 @@ router.post('/', (req, res) => {
     .catch((error) => console.error(error))
 })
 
+// 支出編輯頁面
+router.get('/:id/edit', (req, res) => {
+  const id = req.params.id
+  // 取出所有類別
+  Category.find()
+    .lean()
+    .then((categories) => {
+      // 取出指定紀錄
+      Record.findById(id)
+        .lean()
+        .then((record) => res.render('edit', { categories, record }))
+        .catch((error) => console.error(error))
+    })
+    .catch((error) => console.error(error))
+})
+
+// 支出編輯頁面
+router.put('/:id', (req, res) => {
+  const id = req.params.id
+  // 取出表單資料
+  const { name, category, date, amount } = req.body
+  console.log('body: ', req.body)
+  // 取出指定紀錄
+  Record.findById(id)
+    .then((record) => {
+      record.name = name
+      record.category = category
+      record.date = date
+      record.amount = amount
+      return record.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.error(error))
+})
+
 // 匯出路由器
 module.exports = router

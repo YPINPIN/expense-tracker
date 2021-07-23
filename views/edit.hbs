@@ -1,0 +1,58 @@
+<div class='container my-5'>
+  <div class='row'>
+    <div class='col text-center'>
+      <h1>請修改你的支出<span class='text-success'>(*必填欄位)</span></h1>
+    </div>
+  </div>
+  <div class='row my-4'>
+    <form action='/records/{{record._id}}/?_method=PUT' method='POST'>
+      <div class='input-group input-group-lg mb-3'>
+        <span class='input-group-text' id='inputGroup-sizing-lg'>名稱 *</span>
+        <input
+          type='text'
+          class='form-control'
+          name='name'
+          value='{{record.name}}'
+          required
+        />
+      </div>
+      <div class='input-group input-group-lg mb-3'>
+        <span class='input-group-text' id='inputGroup-sizing-lg'>日期 *</span>
+        <input
+          type='date'
+          class='form-control'
+          name='date'
+          value='{{getDate record.date}}'
+          required
+        />
+      </div>
+      <div class='input-group input-group-lg'>
+        <span class='input-group-text mb-3' id='inputGroup-sizing-lg'>類別 *</span>
+        <select
+          class='form-select form-select-lg mb-3'
+          name='category'
+          required
+        >
+          {{#each categories}}
+            <option value='{{this.value}}' {{#if (isEqual this.value @root.record.category)}} selected {{/if}}>{{this.title}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class='input-group input-group-lg mb-3'>
+        <span class='input-group-text' id='inputGroup-sizing-lg'>金額 *</span>
+        <input
+          type='number'
+          step='1'
+          min='0'
+          value='{{record.amount}}'
+          class='form-control'
+          name='amount'
+          required
+        />
+      </div>
+      <div class='text-center'>
+        <button type='submit' class='btn btn-dark btn-lg'>修改支出</button>
+      </div>
+    </form>
+  </div>
+</div>

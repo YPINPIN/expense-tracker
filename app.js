@@ -1,6 +1,8 @@
 // Express
 const express = require('express')
 const exphbs = require('express-handlebars')
+// method-override
+const methodOverride = require('method-override')
 const port = 3000
 
 // 引用路由器，會自動抓取index
@@ -20,6 +22,8 @@ app.engine(
 app.set('view engine', 'hbs')
 // body-parser
 app.use(express.urlencoded({ extended: true }))
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 // 將 request 導入路由器
 app.use(routes)
