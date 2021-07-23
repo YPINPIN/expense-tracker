@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       // 取出所有紀錄
       Record.find()
         .lean()
-        .sort({ date: 'asc', _id: 'asc' })
+        .sort({ _id: 'asc' })
         .then((records) => res.render('index', { categories, records }))
         .catch((error) => console.error(error))
     })
