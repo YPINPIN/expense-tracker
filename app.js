@@ -18,6 +18,8 @@ app.engine(
   })
 )
 app.set('view engine', 'hbs')
+// body-parser
+app.use(express.urlencoded({ extended: true }))
 
 // 將 request 導入路由器
 app.use(routes)
