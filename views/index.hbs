@@ -1,1 +1,60 @@
-<h1>家庭記帳簿</h1>
+<div class='container my-5'>
+  <!-- Content here -->
+  <div class='row'>
+    <div class='col-6 mx-auto text-center'>
+      <select
+        class='form-select form-select-lg mb-3'
+        aria-label='.form-select-lg'
+      >
+        <option selected>類別</option>
+        {{#each categories}}
+          <option value='{{this.value}}'>{{this.title}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col text-center'>
+      <h1>總金額：<span
+          class='total-amount text-success fw-bold'
+        >{{getTotalAmount records}}</span></h1>
+    </div>
+  </div>
+  {{#each records}}
+    <div
+      class='row border-2 border-bottom border-secondary my-4 p-1 align-items-center'
+    >
+      <div class='col-1 text-info text-center'>
+        <i class='{{getCategoryIcon @root.categories this.category}} fs-1'></i>
+      </div>
+      <div class='col d-flex justify-content-between align-items-center'>
+        <div>
+          <div class='fs-3 text-primary fw-bold'>{{this.name}}</div>
+          <div class='text-muted'>{{formatDate this.date}}</div>
+        </div>
+        <div class='fs-2 text-warning fw-bold'>{{this.amount}}元</div>
+      </div>
+      <div class='col col-auto d-flex'>
+        <div class='m-1'>
+          <a
+            class='btn btn-outline-secondary fw-bold'
+            href='#'
+            role='button'
+          >修改</a>
+        </div>
+        <div class='m-1'>
+          <a
+            class='btn btn-outline-danger fw-bold'
+            href='#'
+            role='button'
+          >刪除</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+  <div class='row'>
+    <div class='col text-center'>
+      <a class='btn btn-dark btn-lg' href='#' role='button'>新增支出</a>
+    </div>
+  </div>
+</div>

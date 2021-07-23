@@ -9,7 +9,14 @@ require('./config/mongoose')
 
 const app = express()
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine(
+  'hbs',
+  exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    helpers: require('./tools/handlebarsHelpers'),
+  })
+)
 app.set('view engine', 'hbs')
 
 // 將 request 導入路由器
