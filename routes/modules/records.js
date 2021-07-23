@@ -53,7 +53,6 @@ router.put('/:id', (req, res) => {
   const id = req.params.id
   // 取出表單資料
   const { name, category, date, amount } = req.body
-  console.log('body: ', req.body)
   // 取出指定紀錄
   Record.findById(id)
     .then((record) => {
@@ -63,6 +62,16 @@ router.put('/:id', (req, res) => {
       record.amount = amount
       return record.save()
     })
+    .then(() => res.redirect('/'))
+    .catch((error) => console.error(error))
+})
+
+// 刪除支出紀錄
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  // 取出指定紀錄
+  Record.findById(id)
+    .then((record) => record.remove())
     .then(() => res.redirect('/'))
     .catch((error) => console.error(error))
 })

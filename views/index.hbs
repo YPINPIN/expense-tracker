@@ -43,11 +43,53 @@
           >修改</a>
         </div>
         <div class='m-1'>
-          <a
+          <button
+            type='button'
             class='btn btn-outline-danger fw-bold'
-            href='#'
-            role='button'
-          >刪除</a>
+            data-bs-toggle='modal'
+            data-bs-target='#delete-modal-{{this._id}}'
+          >
+            刪除
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--delete modal -->
+    <div
+      class='modal fade'
+      id='delete-modal-{{this._id}}'
+      data-bs-backdrop='static'
+      data-bs-keyboard='false'
+      tabindex='-1'
+      aria-labelledby='staticBackdropLabel'
+      aria-hidden='true'
+    >
+      <div class='modal-dialog modal-sm modal-dialog-centered'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h5 class='modal-title' id='staticBackdropLabel'>提示訊息</h5>
+            <button
+              type='button'
+              class='btn-close'
+              data-bs-dismiss='modal'
+              aria-label='Close'
+            >
+            </button>
+          </div>
+          <div class='modal-body text-center'>
+            是否確定刪除此筆資料？
+          </div>
+          <div class='modal-footer'>
+            <button
+              type='button'
+              class='btn btn-secondary'
+              data-bs-dismiss='modal'
+            >取消</button>
+            <form action='/records/{{this._id}}?_method=DELETE' method='POST'>
+              <button type='submit' class='btn btn-danger'>確定刪除</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
