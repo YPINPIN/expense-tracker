@@ -1,18 +1,20 @@
 <div class='container my-5'>
   <!-- Content here -->
-  <div class='row'>
+  <form action='/records/category' class='row' id='categoryForm'>
     <div class='col-6 mx-auto text-center'>
       <select
         class='form-select form-select-lg mb-3'
         aria-label='.form-select-lg'
+        id='categorySelect'
+        name='categorySelect'
       >
-        <option selected>類別</option>
+        <option value='normal' {{#if (isEqual 'normal' categorySelect)}} selected {{/if}}>類別</option>
         {{#each categories}}
-          <option value='{{this.value}}'>{{this.title}}</option>
+          <option value='{{this.value}}' {{#if (isEqual this.value @root.categorySelect)}} selected {{/if}}>{{this.title}}</option>
         {{/each}}
       </select>
     </div>
-  </div>
+  </form>
   <div class='row'>
     <div class='col text-center'>
       <h1>總金額：<span
@@ -104,3 +106,5 @@
     </div>
   </div>
 </div>
+
+<script src='/javascripts/index.js'></script>

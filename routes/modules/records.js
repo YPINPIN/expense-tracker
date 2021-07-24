@@ -6,6 +6,28 @@ const Record = require('../../models/record')
 // category model
 const Category = require('../../models/category')
 
+// 指定支出類別頁面
+router.get('/category', (req, res) => {
+  // 取出表單資料
+  const categorySelect = req.query.categorySelect
+  const condition =
+    categorySelect === 'normal' ? {} : { category: categorySelect }
+  // 取出所有類別
+  Category.find()
+    .lean()
+    .then((categories) => {
+      // 取出指定紀錄
+      Record.find(condition)
+        .lean()
+        .sort({ _id: 'asc' })
+        .then((records) =>
+          res.render('index', { categories, records, categorySelect })
+        )
+        .catch((error) => console.error(error))
+    })
+    .catch((error) => console.error(error))
+})
+
 // 新增支出頁面
 router.get('/new', (req, res) => {
   // 取出所有類別

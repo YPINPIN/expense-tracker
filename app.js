@@ -22,6 +22,8 @@ app.engine(
 app.set('view engine', 'hbs')
 // body-parser
 app.use(express.urlencoded({ extended: true }))
+// static files
+app.use(express.static('public'))
 // 設定每一筆請求都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 
