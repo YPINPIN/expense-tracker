@@ -15,13 +15,20 @@
       </select>
     </div>
   </form>
-  <div class='row'>
+  <div class='row mb-2'>
     <div class='col text-center'>
       <h1>總金額：<span
           class='total-amount text-success fw-bold'
-        >{{getTotalAmount records}}</span></h1>
+        >{{getTotalAmount records}}元</span></h1>
     </div>
   </div>
+  {{#unless records}}
+  <div class='row'>
+    <div class='col text-center'>
+    <div class="alert alert-info fs-2" role="alert"><i class="fas fa-sad-tear ml-1"></i> 無相關記帳紀錄</div>
+     </div>
+  </div>
+  {{/unless}}
   {{#each records}}
     <div
       class='row border-2 border-bottom border-secondary my-4 p-1 align-items-center'
