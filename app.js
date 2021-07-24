@@ -3,7 +3,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 // method-override
 const methodOverride = require('method-override')
-const port = 3000
+// Heroku : process.env.PORT ; Local : 3000
+const port = process.env.PORT || 3000
 
 // 引用路由器，會自動抓取index
 const routes = require('./routes')
